@@ -18,18 +18,18 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 	/** @var BlueScreenFactory */
 	private $factory;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 
 		$this->factory = new BlueScreenFactory();
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\InfoMustBeStringException
-	 */
 	public function testRegisterInvalidInfo()
 	{
+	    $this->expectException(\Nella\MonologTracy\Tracy\InfoMustBeStringException::class);
+	    $this->expectExceptionMessage('Info must be string "NULL" given');
+
 		$this->factory->registerInfo(NULL);
 	}
 
@@ -64,11 +64,11 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 		$this->assertTrue(in_array('Test', $blueScreen->info, TRUE));
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\PanelIsNotCallableException
-	 */
 	public function testRegisterInvalidPanel()
 	{
+	    $this->expectException(\Nella\MonologTracy\Tracy\PanelIsNotCallableException::class);
+	    $this->expectExceptionMessage('Panel is not callable.');
+
 		$this->factory->registerPanel(NULL);
 	}
 
@@ -101,11 +101,11 @@ class BlueScreenFactoryTest extends \Nella\MonologTracy\TestCase
 		$this->assertInstanceOf(BlueScreen::class, $blueScreen);
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\CollapsePathMustBeStringException
-	 */
 	public function testRegisterInvalidCollapsePath()
 	{
+	    $this->expectException(\Nella\MonologTracy\Tracy\CollapsePathMustBeStringException::class);
+	    $this->expectExceptionMessage('Collapse path must be string "NULL" given,');
+
 		$this->factory->registerCollapsePath(NULL);
 	}
 

@@ -16,7 +16,7 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	/** @var LoggerHelper */
 	private $loggerHelper;
 
-	public function setUp()
+	public function setUp(): void
 	{
 		parent::setUp();
 		$logDirectory = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-LoggerHelperTest';
@@ -32,22 +32,22 @@ class LoggerHelperTest extends \Nella\MonologTracy\TestCase
 	{
 		$file = $this->loggerHelper->renderToFile(new \Exception('Test exception'));
 		$this->assertFileExists($file);
-		$this->assertContains('Test exception', file_get_contents($file));
+		$this->assertStringContainsString('Test exception', file_get_contents($file));
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\NotSupportedException
-	 */
 	public function testLog()
 	{
+	    $this->expectException(\Nella\MonologTracy\Tracy\NotSupportedException::class);
+	    $this->expectExceptionMessage('LoggerHelper::log is not supported.');
+
 		$this->loggerHelper->log('Test');
 	}
 
-	/**
-	 * @expectedException \Nella\MonologTracy\Tracy\NotSupportedException
-	 */
 	public function testDefaultMailer()
 	{
+	    $this->expectException(\Nella\MonologTracy\Tracy\NotSupportedException::class);
+	    $this->expectExceptionMessage('LoggerHelper::formatMessage is not supported.');
+
 		$this->loggerHelper->defaultMailer('Test', 'email@example.com');
 	}
 

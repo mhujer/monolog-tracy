@@ -19,7 +19,7 @@ class PanelTest extends \Nella\MonologTracy\TestCase
 	/** @var TestPanel */
 	private $panel;
 
-	protected function setUp()
+	protected function setUp(): void
 	{
 		parent::setUp();
 

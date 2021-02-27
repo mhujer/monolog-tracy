@@ -23,7 +23,7 @@ class BlueScreenHandlerTest extends \Nella\MonologTracy\TestCase
 	/** @var LoggerHelper */
 	private $loggerHelper;
 
-	public function setup()
+	public function setUp(): void
 	{
 		$logDirectory = sys_get_temp_dir() . '/' . getmypid() . microtime() . '-blueScreenHandlerTest';
 		@rmdir($logDirectory); // directory may not exist

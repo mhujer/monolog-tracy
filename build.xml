@@ -29,7 +29,6 @@
 
 	<target name="check" depends="
 		phplint,
-		cs,
 		tests
 	"/>
 
@@ -63,22 +62,6 @@
 			passthru="true"
 			checkreturn="true"
 		>
-			<arg path="${path.src}"/>
-			<arg path="${path.tests}"/>
-		</exec>
-	</target>
-
-	<target name="cs">
-		<exec
-			executable="${path.phpcs.executable}"
-			logoutput="true"
-			passthru="true"
-			checkreturn="true"
-		>
-			<arg value="--standard=${path.phpcs.ruleset}"/>
-			<arg value="--extensions=php"/>
-			<arg value="--encoding=utf-8"/>
-			<arg value="-sp"/>
 			<arg path="${path.src}"/>
 			<arg path="${path.tests}"/>
 		</exec>
